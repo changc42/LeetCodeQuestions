@@ -1,3 +1,10 @@
+/*
+Given a 2D grid consisting of 0s (land) and 1s (water).  A closed island is a group of adjacent 0s 
+totally (all left, top, right, bottom) surrounded by 1s.
+
+Return the number of closed islands.
+*/
+
 import java.util.*;
 
 class MyClosedIsland{
@@ -65,7 +72,6 @@ class MyClosedIsland{
 	}
 	
 	void unify(int r1, int c1, int r2, int c2){
-		//case1: (r1,c1) is not edge and (r2,c2) is edge
 		
 		if(!isEdge(r1,c1) && isEdge(r2,c2)){
 			int temp1;
