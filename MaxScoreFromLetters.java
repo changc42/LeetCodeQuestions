@@ -9,9 +9,10 @@ Score of letters 'a', 'b', 'c', ... ,'z' is given by score[0], score[1], ... , s
 */
 
 class MaxScoreFromLetters{
-	String[] words;
+	LinkedList<String> words;
 	LinkedList<char> letters;
 	int[] score;
+	LinkedList<String> ans;
 	
 	MaxScoreFromLetters(String[] w, LinkedList<char> l, int[] s){
 		words=w;
@@ -19,12 +20,15 @@ class MaxScoreFromLetters{
 		score=s;
 	}
 	
-	class Word{
+	private class Word{
 		String str;
 		int score;
 		
 		Word(String s){
-			
+			str = s;
+			for(int i=0; i<str; i++){
+				
+			}
 		}
 	}
 }
