@@ -19,10 +19,13 @@ class MedianTwoSortedArrays{
 	
 	/**
 	 *@description : swaps arrays if m is bigger than n. Necessary because only the partition in 
-	 *the smaller array is directly changed
+	 *	the smaller array is directly changed
 	 *
 	 *@description : if a set is odd, the set will be partitioned such that the right side 
-	 *contains one extra element
+	 *	contains one extra element
+	 *
+	 *@description : formula assigned to p2 places partition2 such that the sum of the first sections of
+	 *	a and b and the sum of the second sections of a and b are equal OR differ by 1.
 	 */
 	MedianTwoSortedArrays(int[] m, int[] n){
 		if(m[m.length-1]>n[n.length-1]){
@@ -70,7 +73,6 @@ class MedianTwoSortedArrays{
 		int x, y;
 		while(!changePartition());
 		
-		//if combined size is even
 		if((s1+s2)%2==0){
 			if(p1==0){
 				x=b[p2-1];
@@ -90,7 +92,6 @@ class MedianTwoSortedArrays{
 			return (double)(x+y)/2;
 		}
 		
-		//if combined size is odd
 		else{
 			if(p1==s1) return b[p2];
 			if(p1==0) return b[p2-1];
