@@ -40,81 +40,41 @@ class MedianTwoSortedArrays{
 		
 		sInd=0;
 		eInd=m.length;
-		
-		p1=(sInd+eInd)/2;
-		p2=(m.length+n.length-2*p1)/2;
 	}
 	
-	void movePartitionLeft(){
-		eInd = p1;
-		p1 = (sInd+p1)/2;
-		p2 = (s1+s2-2*p1)/2;
-	}
-	void movePartitionRight(){
-		sInd = p1;
-		if(eInd-sInd==1)
-			p1++;
-		else
-			p1 = (p1+eInd)/2;
-		
-		p2 = (s1+s2-2*p1)/2;
-	}
-	boolean changePartition(){ //returns true if no change was made
-		if(p1==0 && b[p2-1]>a[p1]){
-			movePartitionRight();
-			return false;
-		}
-		if(p1>0 && p1<s1){
-			if(a[p1-1]>b[p2]){
-				movePartitionLeft();
-				return false;
-			}
-			if(b[p2-1]>a[p1]){
-				movePartitionRight();
-				return false;
-			}
-		}
-		return true;
-	}
 	
 	double median(){
 		int x, y;
-		while(!changePartition());
-		System.out.println("p1="+p1+" p2="+p2);
+		while(true){
 		
 		/**
 		 *@case p1==0: there are no elements in the first section of `a`
 		 *@case p1==s1 : there are no elements in the second section of `a`
 		 */
-		if((s1+s2)%2==0){
-			if(p1==0){
-				x=b[p2-1];
-				if(p2==s2)
-					y=a[p1];
-				else
-					y=Math.min(a[p1],b[p2]);
+		
+			p1 = (sInd+eInd)/2;
+			p2 = (s1+s2)/2-p1;
+			
+			if(p1>0 && a[p1-1]>b[p2]){
+				eInd = p1-1;
 			}
-			else if(p1==s1){
-				
-				if(p2==0)
-					x=a[p1-1];
-				else
-					x = Math.max(a[p1-1],b[p2-1]);
-				y=b[p2];
+			else if(p1<s1 && b[p2-1]>a[p1]){
+				sInd = p1+1;
 			}
 			else{
-				x=Math.max(a[p1-1], b[p2-1]);
-				y=Math.min(a[p1], b[p2]);
+				if(p1==0) x=b[p2-1];
+				else if(p2==0) x=a[p1-1];
+				else x=Math.max(a[p1-1],b[p2-1]);
+				
+				if(p2==s2) y=a[p1];
+				else if(p1==s1) y=b[p2];
+				else y=Math.min(a[p1],b[p2]);
+				if((s1+s2)%2==1) return y;
+				
+				return (double)(x+y)/2;
 			}
-			System.out.println("x="+x+" y="+y);
-			return (double)(x+y)/2;
 		}
 		
-		else{
-			if(p1==s1) return b[p2];
-			if(p1==0) return b[p2-1];
-			return Math.min(a[p1], b[p2]);
-		}
 	}
 	
 	public static void main(String[] args){
