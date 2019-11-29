@@ -1,20 +1,17 @@
-import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 class test{
 	public static void main(String[] args){
-		String i = "huupp";
-		String j=i;
-		i += "opoway";
-		System.out.println("i="+i+" j=" +j);
+		CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+		for(int i=0; i<10; i++){
+			list.add(String.valueOf(i));
+		}
 		
-		ArrayList<Integer> a = new ArrayList<>();
-		a.add(100);
-		ArrayList<Integer> b = a;
-		a.add(4);
-		System.out.println(a + "\n" + b);
+		for(String s: list){
+			list.add(s+"!!");
+			list.remove("3");
+		}
 		
-		String s= "hello";
-		System.out.println(s);
+		System.out.println(list);
 	}
-
 }
