@@ -1,6 +1,6 @@
 import java.util.*;
 
-class GenerateParenthesis{
+class GenerateParentheses{
 	List<String> ans = new LinkedList<>();
 
 	boolean isParenGood(char[] charArray){
@@ -17,14 +17,19 @@ class GenerateParenthesis{
 	}
 
 	void placeParen(int i, int n, char[] charArray){
-		System.out.println("placeParen called: i="+i);
-		if(i>=2*n) return;
+		System.out.println("\nplaceParen called: i="+i);
+		System.out.println("charArray: " + String.valueOf(charArray));
+		if(i>=2*n){
+			System.out.println("break early");
+			return;
+		}
 
 		n--;
 		charArray[i]='(';
 		System.out.println("charArray updated: " + String.valueOf(charArray));
 		for(int k=i+1; k<2*n; k++){
 			System.out.println("k="+k);
+			System.out.println("charArray right before placeParen: " + String.valueOf(charArray));
 			placeParen(k, n, charArray);
 		}
 
@@ -39,20 +44,21 @@ class GenerateParenthesis{
 			}
 		}
 
+		System.out.println("char removed");
 		charArray[i]=' ';
 		n++;
 		return;
 
 	}
-	public List<String> generateParenthesis(int n) {
-		static char[] charArray = new char[2*n];
+	public List<String> generateParentheses(int n) {
+		char[] charArray = new char[2*n];
 		for(int i=0; i<n+1; i++) placeParen(i, n, charArray);
 		return ans;
 	}
 
 	public static void main(String[] args){
 		GenerateParentheses a = new GenerateParentheses();
-		System.out.println("Answer: "+a.generateParenthesis(3));
+		System.out.println("Answer: "+a.generateParentheses(3));
 	}
 
 }

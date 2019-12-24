@@ -1,13 +1,11 @@
 import java.util.*;
 
 class test{
-	static int add(int a){
-		a=a+233;
-		return a;
-	}
 	public static void main(String[] args){
-		static int a= 1;
-		add(a);
-		System.out.println(a);
+		Hashtable<String, Integer> a = new Hashtable<>();
+		String s = "hello";
+		a.put(s,2);
+		a.put(s,3);
+		System.out.println(a.entrySet());
 	}
 }
