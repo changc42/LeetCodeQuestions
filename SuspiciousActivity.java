@@ -1,5 +1,13 @@
 import java.util.*;
 
+/*given an input (String[]) and a threshold number(int)
+each element is a string of 3 numbers separated by spaces.
+the first numbers are receiver and sender id.
+the third nubmer is a transaction amount.
+identify the id's of users that participated at least "threshold" number of transactions
+a transaction where a user sends money to himself counts as one transaction, not two
+*/
+
 class SuspiciousActivity{
   static LinkedList<String> findSusAct(String[] logs, int threshold){
     Map<String, Integer> map = new HashMap<>();
